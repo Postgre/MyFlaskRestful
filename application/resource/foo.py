@@ -5,8 +5,9 @@ from bson import json_util
 from flask import request
 from flask_restful import Resource, reqparse
 
-from model import db as db_sqlite
-from mongo import db as db_mongo
+from application.database import db_sqlite, db_mongo
+from application.database import Person, Computer
+
 
 parser = reqparse.RequestParser()
 parser.add_argument('task', required=True, location='json', help='receive a json data')
@@ -33,5 +34,7 @@ class TestMongo(Resource):
 
 class TestSqlite(Resource):
     def get(self):
-        pass
+        result = Person.query.all()
+        return result
+
 

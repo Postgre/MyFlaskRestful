@@ -1,8 +1,5 @@
 # _*_ coding:utf-8 _*_
-from flask_sqlalchemy import SQLAlchemy
-
-
-db = SQLAlchemy()
+from ._base import db
 
 
 class Person(db.Model):
