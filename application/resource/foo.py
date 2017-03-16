@@ -5,7 +5,7 @@ from bson import json_util
 from flask import request
 from flask_restful import Resource, reqparse
 
-from application.database import db_sqlite, db_mongo
+from application.database import db_mongo, db_sqlite
 from application.database import Person, Computer
 
 
@@ -34,7 +34,8 @@ class TestMongo(Resource):
 
 class TestSqlite(Resource):
     def get(self):
-        result = Person.query.all()
+        person = Person.query.all()
+        result = [psn.to_json() for psn in person]
         return result
 
 
